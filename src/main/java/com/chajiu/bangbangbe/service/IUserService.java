@@ -1,5 +1,8 @@
 package com.chajiu.bangbangbe.service;
 
-public interface IUserService {
 
+import org.springframework.stereotype.Service;
+
+public interface IUserService {
+    void fun();
 }
