@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Address {
     private Integer id;
-    private Integer userId;
+    private Integer openId;
     private String address;
     private String phone;
     private String addressee;

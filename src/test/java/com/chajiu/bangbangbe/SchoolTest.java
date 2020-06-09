@@ -28,7 +28,7 @@ public class SchoolTest {
     }
 
     @Test
-    public void selectbName(){
+    public void selectbyName(){
         School school = mapper.selectbyName("shd");
         System.out.println(school);
     }

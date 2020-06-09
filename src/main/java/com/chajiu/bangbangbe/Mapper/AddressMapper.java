@@ -8,25 +8,48 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface AddressMapper {
-    @Select("select * from address")
-    public Address listaddress();
 
-    @Select("select * from address where id=#{id}")
-    public Address selectbyId(int id);
+//     Address listaddress();
 
-    @Select("select * from address where user_id=#{id}")
-    public Address selectbyUserId(int id);
+     /**
+      * 依据address的id查找address
+      * @param id
+      * @return
+      */
+     Address selectbyId(int id);
 
-    @Insert("insert into address(user_id) values(#{user_id})")
-    public void insertuserId(int user_id);
+     /**
+      * 通过open_id找所有地址
+      * @param openId
+      * @return
+      */
+     List<Address> selectByOpenId(int openId);
 
-    @Update("update address set address=#{address} where user_id=#{user_id}")
-    public void updateAddressbyUserId(String address ,int user_id);
+//     void insertuserId(int user_id);
 
-    @Delete("delete from address where user_id=#{user_id}")
-    public void deletebyUserId(int user_id);
+     /**
+      * 根据address的id修改address信息
+      * @param address 传入address对象，id是旧id，其他内容是新内容
+      */
+     void updateById(Address address);
+
+     /**
+      * 依据address的id删除address
+      * @param id address的id
+      */
+     void deleteById(int id);
+
+     /**
+      * 插入地址信息
+      * @param address 新的address对象，id为空
+      */
+     void insertAddress(Address address);
+
+
 
 
 }
