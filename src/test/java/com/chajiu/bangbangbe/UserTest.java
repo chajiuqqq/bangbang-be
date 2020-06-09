@@ -1,23 +1,24 @@
 package com.chajiu.bangbangbe;
 
 import com.chajiu.bangbangbe.entity.User;
-import com.chajiu.bangbangbe.Mapper.Usermapper;
+import com.chajiu.bangbangbe.Mapper.UserMapper;
 
-import org.apache.ibatis.annotations.Update;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 
 @SpringBootTest
 public class UserTest {
     @Autowired
-    Usermapper mapper;
+    UserMapper mapper;
 
     @Test
     public void listuser() {
-        User user = mapper.listuser();
-        System.out.println(user);
+        List<User> users= mapper.listuser();
+        System.out.println(users);
     }
 
     @Test
@@ -28,8 +29,8 @@ public class UserTest {
 
     @Test
     public void selectbyName(){
-        User user = mapper.selectbyName("zzb");
-        System.out.println(user);
+        List<User> users = mapper.selectbyName("zzb");
+        System.out.println(users);
     }
     @Test
     public void insertname() {

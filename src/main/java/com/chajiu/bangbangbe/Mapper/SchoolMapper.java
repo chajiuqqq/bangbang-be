@@ -11,22 +11,20 @@ import com.chajiu.bangbangbe.entity.User;
 
 @Mapper
 public interface SchoolMapper {
-    @Select("select * from school")
-    public School listschool();
+     /**
+      * 获取所有学校列表
+      * @return
+      */
+     School listSchools();
 
-    @Select("select * from school where id=#{id}")
-    public School selectbyId(int id);
+     School selectbyId(int id);
 
-    @Select("select * from school where name=#{name}")
-    public School selectbyName(String name);
+     School selectbyName(String name);
 
-    @Insert("insert into school(name) values(#{name})")
-    public void insertname(String name);
+     void insertname(String name);
 
-    @Update("update school set name=#{name} where id=#{id}")
-    public void updatenamebyId(String name ,int id);
+     void updatenamebyId(String name ,int id);
 
-    @Delete("delete from school where id=#{id}")
-    public void deletebyId(int id);
+     void deletebyId(int id);
 }
 

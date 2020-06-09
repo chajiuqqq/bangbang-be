@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chajiu.bangbangbe.Mapper.SchoolMapper">
-    <select id="listschool" resultType="School">
+    <select id="listSchools" resultType="School">
         select * from school
     </select>
     <select id="selectbyId" resultType="School" parameterType="int">
