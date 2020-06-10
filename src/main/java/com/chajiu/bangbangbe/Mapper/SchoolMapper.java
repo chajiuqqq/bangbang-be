@@ -9,22 +9,24 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.chajiu.bangbangbe.entity.User;
 
+import java.util.List;
+
 @Mapper
 public interface SchoolMapper {
      /**
       * 获取所有学校列表
       * @return
       */
-     School listSchools();
+     List<School> listSchools();
 
-     School selectbyId(int id);
+     School selectById(int id);
 
-     School selectbyName(String name);
+     School selectByName(String name);
 
-     void insertname(String name);
+     void insertName(String name);
 
-     void updatenamebyId(String name ,int id);
+     void updateNameById(String name ,int id);
 
-     void deletebyId(int id);
+     void deleteById(int id);
 }
 

@@ -3,22 +3,62 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chajiu.bangbangbe.Mapper.OrderMapper">
-    <select id="listorder" resultType="Order">
+    <resultMap id="OrderMapperMap" type="com.chajiu.bangbangbe.entity.Order">
+        <id column="id" property="id"></id>
+        <result column="order_id" property="orderId"></result>
+        <result column="status" property="status"></result>
+        <result column="customer_id" property="customerId"></result>
+        <result column="customer_name" property="customerName"></result>
+        <result column="helper_id" property="helperId"></result>
+        <result column="helper_name" property="helperName"></result>
+        <result column="helper_phone" property="helperPhone"></result>
+        <result column="amount" property="amount"></result>
+        <result column="content" property="content"></result>
+        <result column="target_address" property="targetAddress"></result>
+        <result column="address" property="address"></result>
+        <result column="addressee" property="addressee"></result>
+        <result column="addressee_phone" property="addresseePhone"></result>
+        <result column="confirm_code" property="confirmCode"></result>
+        <result column="pay_status" property="payStatus"></result>
+        <result column="review_status" property="reviewStatus"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="arrival_time" property="arrivalTime"></result>
+        <result column="skey" property="skey"></result>
+    </resultMap>
+
+    <select id="getAvailableOrders" resultMap="OrderMapperMap">
+        select * from orders where status=3
+    </select>
+    <select id="selectByOrderId" resultMap="OrderMapperMap">
+        select * from orders where order_id=#{orderId}
+    </select>
+    <select id="getUserOrders" resultMap="OrderMapperMap">
         select * from orders
+        <if test="Identity==0">
+            where customer_id=#{user.openId}
+        </if>
+        <if test="Identity==1">
+            where helper_id=#{user.openId}
+        </if>
     </select>
-    <select id="selectbyId" resultType="Order" parameterType="int">
-        select * from orders where id=#{id}
-    </select>
-    <select id="selectbyOrderId" resultType="Order" parameterType="String">
-        select * from orders where order_id=#{OrderId}
-    </select>
-    <insert id="insertOrderId" parameterType="String">
-        insert into Orders(order_id) values(#{OrderId})
+    <insert id="addOrder" parameterType="Order" useGeneratedKeys="true" keyProperty="id">
+        insert into Orders(order_id,status,customer_id,customer_name,helper_id,helper_name,helper_phone,
+        amount,content,target_address,address,addressee,addressee_phone,confirm_code,pay_status,review_status,
+        create_time,arrival_time,skey)
+        values(#{orderId},#{status},#{customerId},#{customerName},#{helperId},#{helperName},
+        #{helperPhone}, #{amount},#{content},#{targetAddress},#{address},#{addressee},#{addresseePhone},#{confirmCode},
+        #{payStatus},#{reviewStatus},#{createTime},#{arrivalTime},#{skey})
     </insert>
-    <update id="updateAddressbyOrderId">
-        update orders set address=#{address} where order_id=#{order_id}
+    <update id="takeOrder">
+        update orders set status=0,helper_id = #{openId} where order_id=#{orderId}
     </update>
-    <delete id="deletebyOrderId" parameterType="String">
-        delete from orders where order_id=#{order_id}
+    <update id="completeOrder">
+        update orders set status=1 where order_id=#{orderId}
+    </update>
+    <update id="cancelOrder">
+        update orders set status=2 where order_id=#{orderId}
+    </update>
+    <delete id="deleteByOrderId" parameterType="String">
+        delete from orders where order_id=#{orderId}
     </delete>
 </mapper>

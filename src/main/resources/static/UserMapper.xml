@@ -3,25 +3,60 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chajiu.bangbangbe.Mapper.UserMapper">
-    <select id="listuser" resultType="User">
-        select * from user
-    </select>
-    <select id="selectbyId" resultType="User" parameterType="int">
-        select * from user where id=#{id}
-    </select>
-    <select id="selectbyName" resultType="User" parameterType="String">
-        select * from user where name=#{name}
+    <resultMap id="UserMapperMap" type="com.chajiu.bangbangbe.entity.User">
+        <id column="id" property="id"></id>
+        <result column="nickname" property="nickname"></result>
+        <result column="name" property="name"></result>
+        <result column="school_id" property="schoolId"></result>
+        <result column="school_name" property="schoolName"></result>
+        <result column="phone_number" property="phoneNumber"></result>
+        <result column="identity" property="identity"></result>
+        <result column="avatar_url" property="avatarUrl"></result>
+        <result column="open_id" property="openId"></result>
+        <result column="identity_id" property="identityId"></result>
+    </resultMap>
+
+    <select id="selectByOpenId" resultMap="UserMapperMap">
+        select * from user where open_id=#{openId}
     </select>
     <insert id="insertname" parameterType="String">
         insert into user(name) values (#{name})
     </insert>
-    <insert id="insertall" parameterType="User">
-        insert into user(name,username,password,school_id,school_name,phone_number,identity) values(#{name},#{userName},#{password},#{schoolId},#{schoolName},#{phoneNumber},#{identity})
+    <insert id="insert" parameterType="User">
+        insert into user(nickname,name,school_id,school_name,phone_number,identity,avatar_url,open_id,identity_id)
+        values(#{nickname},#{name},#{schoolId},#{schoolName},#{phoneNumber},#{identity},#{avatarUrl},#{openId},#{identityId})
     </insert>
-    <update id="updatenamebyId">
-        update user set name=#{name} where id=#{id}
+    <update id="update">
+        update user
+        <set>
+            <if test="nickname!=null">
+                nickname=#{nickname},
+            </if>
+            <if test="name!=null">
+                name=#{name},
+            </if>
+            <if test="schoolId!=null">
+                school_id=#{schoolId},
+            </if>
+            <if test="schoolName!=null">
+                school_name=#{schoolName},
+            </if>
+            <if test="phoneNumber!=null">
+                phone_number=#{phoneNumber},
+            </if>
+            <if test="identity!=null">
+                identity=#{identity},
+            </if>
+            <if test="avatarUrl!=null">
+                avatar_url=#{avatarUrl},
+            </if>
+            <if test="openId!=null">
+                ,open_id=#{openId}
+            </if>
+            <if test="identityId!=null">
+                identity_id=#{identityId},
+            </if>
+        </set>
+        where id=#{id}
     </update>
-    <delete id="deletebyId" parameterType="int">
-        delete from user where id=#{id}
-    </delete>
 </mapper>

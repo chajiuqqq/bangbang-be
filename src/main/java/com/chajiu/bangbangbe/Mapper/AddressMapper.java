@@ -1,7 +1,6 @@
 package com.chajiu.bangbangbe.Mapper;
 
 import com.chajiu.bangbangbe.entity.Address;
-import com.chajiu.bangbangbe.entity.User;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
@@ -20,7 +19,7 @@ public interface AddressMapper {
       * @param id
       * @return
       */
-     Address selectbyId(int id);
+     Address selectById(int id);
 
      /**
       * 通过open_id找所有地址

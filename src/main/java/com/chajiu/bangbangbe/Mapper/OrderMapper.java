@@ -3,7 +3,6 @@ package com.chajiu.bangbangbe.Mapper;
 import com.chajiu.bangbangbe.entity.Order;
 
 import com.chajiu.bangbangbe.entity.User;
-import com.sun.org.apache.xpath.internal.operations.Or;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
@@ -26,12 +25,12 @@ public interface OrderMapper {
       * @param orderId orderId,不是id
       * @return
       */
-     Order selectbyOrderId(String orderId);
+     Order selectByOrderId(String orderId);
 
      /**
       * 发布订单
       * @param order 订单本体
-      * @return 新建的order的orderId
+      * @return 新建的order的id
       */
      Integer addOrder(Order order);
 
@@ -51,7 +50,7 @@ public interface OrderMapper {
       * @param orderId   订单编号
       * @param openId    用户的openid
       */
-     void takeOrder(Integer orderId, String openId);
+     void takeOrder(String orderId, Integer openId);
 
      /**
       * 完成订单，请置订单的status为1（已完成）
@@ -68,7 +67,7 @@ public interface OrderMapper {
 
      /**
       * 删除订单
-      * @param order_id
+      * @param orderId
       */
-     void deletebyOrderId(String order_id);
+     void deleteByOrderId(String orderId);
 }

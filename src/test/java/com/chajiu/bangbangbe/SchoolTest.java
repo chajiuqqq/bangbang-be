@@ -11,39 +11,41 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 public class SchoolTest {
     @Autowired
     SchoolMapper mapper;
 
     @Test
-    public void listschool() {
-        School school = mapper.listschool();
+    public void listSchools() {
+        List<School> school = mapper.listSchools();
         System.out.println(school);
     }
     @Test
-    public void selectbyId(){
-        School school = mapper.selectbyId(1);
+    public void selectById(){
+        School school = mapper.selectById(1);
         System.out.println(school);
     }
 
     @Test
-    public void selectbyName(){
-        School school = mapper.selectbyName("shd");
+    public void selectByName(){
+        School school = mapper.selectByName("shd");
         System.out.println(school);
     }
     @Test
-    public void insertname(){
-        mapper.insertname("shd");
+    public void insertName(){
+        mapper.insertName("shd");
     }
     @Test
-    public void updatenamebyId(){
-        mapper.updatenamebyId("shd",1);
+    public void updateNameById(){
+        mapper.updateNameById("sXX",2);
     }
 
     @Test
-    public void deletebyId(){
-        mapper.deletebyId(1);
+    public void deleteById(){
+        mapper.deleteById(2);
     }
 
 }

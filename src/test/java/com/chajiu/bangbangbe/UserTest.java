@@ -15,48 +15,52 @@ public class UserTest {
     @Autowired
     UserMapper mapper;
 
+//    @Test
+//    public void listuser() {
+//        List<User> users= mapper.listuser();
+//        System.out.println(users);
+//    }
+//
     @Test
-    public void listuser() {
-        List<User> users= mapper.listuser();
-        System.out.println(users);
-    }
-
-    @Test
-    public void selectbyId(){
-        User user = mapper.selectbyId(1);
+    public void selectByOpenId(){
+        User user = mapper.selectByOpenId(1);
         System.out.println(user);
     }
-
+//
+//    @Test
+//    public void selectbyName(){
+//        List<User> users = mapper.selectbyName("zzb");
+//        System.out.println(users);
+//    }
+//    @Test
+//    public void insertname() {
+//        mapper.insertname("zzb");
+//    }
     @Test
-    public void selectbyName(){
-        List<User> users = mapper.selectbyName("zzb");
-        System.out.println(users);
-    }
-    @Test
-    public void insertname() {
-        mapper.insertname("zzb");
-    }
-    @Test
-    public void insertall(){
+    public void insert(){
         User user = new User();
         user.setName("ZZZ");
-        user.setUserName("ZZZZZ");
-        user.setPassword("123456");
+        user.setName("ZZZZZ");
         user.setSchoolId(1);
         user.setSchoolName("shd");
         user.setPhoneNumber("12345678999");
         user.setIdentity(1);
-        mapper.insertall(user);
+        mapper.insert(user);
     }
     @Test
-    public void updatenamebyId(){
-        mapper.updatenamebyId("zzzy",2);
+    public void update(){
+        User user = new User();
+        user.setId(4);
+        user.setNickname(null);
+        user.setName("AAAA");
+        user.setPhoneNumber("555555");
+        mapper.update(user);
     }
 
-    @Test
-    public void deletebyId(){
-        mapper.deletebyId(2);
-    }
+//    @Test
+//    public void deletebyId(){
+//        mapper.deletebyId(2);
+//    }
 
 
 
