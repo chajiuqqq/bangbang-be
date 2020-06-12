@@ -23,7 +23,7 @@ public interface SchoolMapper {
 
      School selectByName(String name);
 
-     void insertName(String name);
+     void insert(School school);
 
      void updateNameById(String name ,int id);
 

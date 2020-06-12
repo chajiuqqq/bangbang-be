@@ -1,17 +1,14 @@
-package com.chajiu.bangbangbe.Mapper;
+package com.chajiu.bangbangbe.service;
 
-
+import com.chajiu.bangbangbe.entity.App;
 import com.chajiu.bangbangbe.entity.Session;
-import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
-public interface SessionMapper {
+public interface ISessionService {
     /**
      * 登录，把里面的属性都存进去
      * @param session
      */
     void add(Session session);
-
     /**
      * 依据openid更新session_key和skey
      * @param session
@@ -23,12 +20,10 @@ public interface SessionMapper {
      * @param openid
      * @return
      */
-    Integer exist(String openid);
+    Boolean exist(String openid);
 
-    /**
-     * 利用skey找openid
-     * @param skey
-     * @return
-     */
+    public Session login(String code) throws Exception;
+
+
     String findOpenid(String skey);
 }

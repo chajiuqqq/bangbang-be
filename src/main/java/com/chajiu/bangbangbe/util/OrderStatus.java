@@ -15,5 +15,10 @@ public enum OrderStatus {
     /**
      * 已取消
      */
-    CANCELED
+    CANCELED,
+
+    /**
+     * 待接单
+     */
+    WAITFORTAKE
 }

@@ -18,12 +18,27 @@
         select * from address where open_id=#{openId}
     </select>
     <update id="updateById">
-        update address set address=#{address},open_id=#{openId},phone=#{phone},addressee=#{addressee} where id=#{id}
+        update address
+        <set>
+            <if test="address!=null">
+                address=#{address},
+            </if>
+            <if test="openId!=null">
+                open_id=#{openId},
+            </if>
+            <if test="phone != null">
+                phone=#{phone},
+            </if>
+            <if test="addressee != null">
+                addressee=#{addressee}
+            </if>
+        </set>
+        where id=#{id}
     </update>
     <delete id="deleteById" parameterType="int">
         delete from address where id=#{id}
     </delete>
-    <insert id="insertAddress" parameterType="Address">
+    <insert id="insertAddress" parameterType="Address" useGeneratedKeys="true" keyProperty="id">
         insert into address(open_id,address,phone,addressee) values(#{openId},#{address},#{phone},#{addressee})
     </insert>
 </mapper>

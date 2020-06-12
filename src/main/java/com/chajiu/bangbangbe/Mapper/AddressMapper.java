@@ -26,7 +26,7 @@ public interface AddressMapper {
       * @param openId
       * @return
       */
-     List<Address> selectByOpenId(int openId);
+     List<Address> selectByOpenId(String openId);
 
 //     void insertuserId(int user_id);
 

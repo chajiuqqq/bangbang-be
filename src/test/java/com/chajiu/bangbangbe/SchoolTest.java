@@ -36,7 +36,7 @@ public class SchoolTest {
     }
     @Test
     public void insertName(){
-        mapper.insertName("shd");
+        mapper.insert(null);
     }
     @Test
     public void updateNameById(){

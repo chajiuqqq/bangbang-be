@@ -27,8 +27,7 @@ public interface UserMapper {
      * @param openId
      * @return
      */
-    User selectByOpenId(int openId);
-
+    User selectByOpenId(String openId);
 
 
 }

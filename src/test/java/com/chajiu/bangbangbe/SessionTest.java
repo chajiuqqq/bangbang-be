@@ -33,4 +33,19 @@ public class SessionTest {
         mapper.add(session);
     }
 
+    @Test
+    public void find(){
+        System.out.println(mapper.exist("oy2b_42LsdtxbY20shz1smSlSdCM"));
+    }
+
+    @Test
+    public void update(){
+        Session session=new Session();
+        session.setOpenId("oy2b_42LsdtxbY20shz1smSlSdCM");
+        session.setSessionKey("sadasdadasd");
+        session.setSkey("sdsdsdsdsdsdsdsd");
+
+        mapper.update(session);
+    }
+
 }

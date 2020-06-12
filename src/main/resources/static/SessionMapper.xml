@@ -4,6 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chajiu.bangbangbe.Mapper.SessionMapper">
     <insert id="add" parameterType="Session">
-        insert into session(Id,open_id,session_key,skey,last_login_time) values(#{id},#{openId},#{sessionKey},#{skey},#{lastLoginTime})
+        insert into session(open_id,session_key,skey,last_login_time) values(#{openId},#{sessionKey},#{skey},#{lastLoginTime})
     </insert>
+    <update id="update"  parameterType="Session">
+        update session set session_key=#{sessionKey}, skey=#{skey}, last_login_time=#{lastLoginTime} where open_id=#{openId}
+    </update>
+    <select id="exist" resultType="int">
+        select count(*) from session where open_id=#{openid}
+    </select>
+    <select id="findOpenid" resultType="string">
+        select open_id from session where skey=#{skey}
+    </select>
 </mapper>

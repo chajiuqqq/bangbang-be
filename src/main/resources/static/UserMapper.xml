@@ -50,13 +50,10 @@
             <if test="avatarUrl!=null">
                 avatar_url=#{avatarUrl},
             </if>
-            <if test="openId!=null">
-                ,open_id=#{openId}
-            </if>
             <if test="identityId!=null">
                 identity_id=#{identityId},
             </if>
         </set>
-        where id=#{id}
+        where open_id=#{openId}
     </update>
 </mapper>

@@ -23,7 +23,6 @@
         <result column="review_status" property="reviewStatus"></result>
         <result column="create_time" property="createTime"></result>
         <result column="arrival_time" property="arrivalTime"></result>
-        <result column="skey" property="skey"></result>
     </resultMap>
 
     <select id="getAvailableOrders" resultMap="OrderMapperMap">
@@ -34,23 +33,23 @@
     </select>
     <select id="getUserOrders" resultMap="OrderMapperMap">
         select * from orders
-        <if test="Identity==0">
-            where customer_id=#{user.openId}
+        <if test="identity==0">
+            where customer_id=#{openid}
         </if>
-        <if test="Identity==1">
-            where helper_id=#{user.openId}
+        <if test="identity==1">
+            where helper_id=#{openid}
         </if>
     </select>
     <insert id="addOrder" parameterType="Order" useGeneratedKeys="true" keyProperty="id">
         insert into Orders(order_id,status,customer_id,customer_name,helper_id,helper_name,helper_phone,
         amount,content,target_address,address,addressee,addressee_phone,confirm_code,pay_status,review_status,
-        create_time,arrival_time,skey)
+        create_time,arrival_time)
         values(#{orderId},#{status},#{customerId},#{customerName},#{helperId},#{helperName},
         #{helperPhone}, #{amount},#{content},#{targetAddress},#{address},#{addressee},#{addresseePhone},#{confirmCode},
-        #{payStatus},#{reviewStatus},#{createTime},#{arrivalTime},#{skey})
+        #{payStatus},#{reviewStatus},#{createTime},#{arrivalTime})
     </insert>
     <update id="takeOrder">
-        update orders set status=0,helper_id = #{openId} where order_id=#{orderId}
+        update orders set status=0,helper_id = #{helper.openId},helper_name = #{helper.name}, helper_phone = #{helper.phoneNumber} where order_id=#{orderId}
     </update>
     <update id="completeOrder">
         update orders set status=1 where order_id=#{orderId}

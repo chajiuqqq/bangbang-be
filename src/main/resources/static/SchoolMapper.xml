@@ -17,7 +17,7 @@
     <select id="selectByName" resultMap="SchoolMapperMap" >
         select * from school where name=#{name}
     </select>
-    <insert id="insertName" parameterType="String">
+    <insert id="insert" parameterType="school" useGeneratedKeys="true" keyProperty="id">
         insert into school(name) values (#{name})
     </insert>
     <update id="updateNameById">
